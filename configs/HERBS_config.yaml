@@ -1,0 +1,54 @@
+project_name: FGVC-HERBS
+notes: 'no inverse'
+exp_name: with_bg
+machine_type: ~
+use_wandb: False
+wandb_entity: marshallia11
+train_root: ./dataset/M58
+train_partial_root : ~
+model_type: HERBS #resnet18 convnext HERBS
+batch_size: 8
+num_workers: 2
+data_size: 384
+backbone_model_name: swin-l
+pretrained: ~ #./pretrained_model/HERBS/M58-best.pth
+optimizer: SGD
+max_lr: 0.0005
+wdecay: 0.0003
+max_epochs: 50
+warmup_batchs: 1500
+use_amp: True
+use_fpn: True
+fpn_size: 1536
+use_selection: True
+num_selects:
+  layer1: 256
+  layer2: 128
+  layer3: 64
+  layer4: 32
+use_combiner: True
+lambda_b0: 1.375
+lambda_b: 0.3
+lambda_s: 0.0
+lambda_n: 5.0
+lambda_c: 1.0
+update_freq: 4
+log_freq: 1
+eval_freq:  1
+temperature: 64
+is_train_aug : True
+isgrayscale: False
+which_gpu: cuda:0
+is_save_img: False
+# filter dataset
+is_truncate_train_dataset: False #true if want to change the div num
+is_truncate_train_dataset_partial : False
+div_num: 5
+partial_div_num : 0
+# combine bg
+train_combine_bg: True
+bg_path: new_bg
+
+## cross validation
+is_using_cross_validation: False
+cross_validation_folds: 5
